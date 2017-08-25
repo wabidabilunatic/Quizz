@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf8>
+        <link href="http//allfont.ru/allfont.css?fonts=ubuntu"
+        rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('/web/css/style.css') }}">
+    </head>
+    <body>
+
+<div>
+    <header>
+        
+  <h2>Билет {{numTest}}</h2>
+    </header>
+  
+
+{#  top menu #}
+   <a href="{{ path('quizz_home') }}">  Выбрать билет </a>
+  <br>
+  
+{#  progress bar
+  <progress value="{{correctAnswers| length}}" max="{{numberOfQuestions}}"></progress> {{correctAnswers| length}}/{{numberOfQuestions}}
+ #}
+ <br>
+  
+
+  <br>
+  
+  <div id="table">
+      {#  display of correct/failed answers#}
+{#      {% for r in correctAnswers%}
+         
+             <div class="cell {{ (r) ? 'correct' : 'wrong' }}" >{{r}}</div>
+      {% endfor %}#}
+  
+  
+
+        {% for i in 1..numberOfQuestions%}
+        
+           
+             
+             {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
+             
+               <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" >{{i}}</div>
+               
+             {% else %}
+             
+               <div class="cell" >{{i}}</div>
+             {% endif %}
+             
+        {% endfor %}
+
+    </div>
+    
+<br/>
+  
+    {% if not finished %}
+{#  picture#}
+  <img src="{{ asset('/web/images/'~question.addr) }}"> <br/>
+  
+  
+{# debug text  
+  numQuestion : {{question.numQuestion}},
+  quantityAns : {{question.quantityAns}},
+  correctAnswer : {{question.correctAnswer}}:{{ asset('/web/images/'~question.addr) }} <br>
+ 
+   #} 
+   
+ {# answers#}
+ 
+   <div id="instance">
+       
+       
+       {% raw %}
+         <span id="showResult">{{ correctResult }}    </span>
+       {% endraw %}
+       
+       
+          {% if numQuestion != numberOfQuestions %}
+          <form action="{{ path('quizz_question',{'category':category,'numTest':numTest,'numQuestion':numQuestion+1})}}" method="POST">
+              {% else %}
+          <form action="{{ path('quizz_question',{'category':category,'numTest':numTest,'numQuestion':numQuestion})}}" method="POST">
+         {% endif %}
+ 
+ 
+
+              {# Display of answers #}
+            
+              {% for i in 1..question.quantityAns  %}
+              
+              <label class="radio-inline" for="a{{i}}" id="l{{i}}"><input type="radio" id="a{{i}}" name="answer"  value="{{i}}"  @click="checkCorrectAnswer({{i}})"  :disabled="finished"/> {{i}}</label>
+              
+                                     
+                                   {#  <label for="a{{i}}" id="l{{i}}">{{i}}</label><br />#}
+              {% endfor %}
+    
+              {# /Display of answers #}
+          
+          
+          <input type="hidden" name="questionNumber" value="{{numQuestion}}"/>
+         <br/>
+          <input type="submit" id="submit" value="ДАЛЕЕ"  v-show="finished" @click="send()">
+         </form>
+         
+  </div>
+
+
+ {% else %}
+{# it will display this message at the end of test#}
+    <h3>  Тест завершён!<br></h3>
+      Вы ответили правильно на вопросы:<br>
+      <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
+   
+   
+   {% endif %}
+
+  <script src="https://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+ <script type="text/javascript">
+    
+
+  	var vm = new Vue(
+  	{
+el:'#instance',
+data:{
+    finished:false,
+    correctResult: ''
+    
+},
+methods:
+{
+    
+    checkCorrectAnswer:function(id)
+    {
+
+        this.finished = true;
+         document.getElementById("l"+{{question.correctAnswer}}).style.color="green";
+        if(id == {{question.correctAnswer}}) 
+        {
+            //CORRECT ANSWER
+         this.correctResult = "Правильный ответ!";
+         
+         document.getElementById("showResult").className += "correct_ans";
+        }
+        else
+        {
+            
+            //WRONG ANSWER
+          this.correctResult = "Неправильный ответ! Правильный ответ: "+{{question.correctAnswer}}; 
+           document.getElementById("showResult").className += "wrong_ans";
+        }
+         
+         
+    },
+    send:function()
+    {
+        //because disabled button doesnt work
+        this.finished =false;
+        console.log("send");
+    }
+    
+}
+});
+</script>
+
+</body>
+
+</html>
+

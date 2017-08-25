@@ -1,0 +1,7 @@
+/vendor/
+dploy.yml
+/web/images/
+composer.lock
+.idea/
+/app/dev.php
+
