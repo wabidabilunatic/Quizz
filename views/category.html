@@ -62,26 +62,31 @@
 
 <!---if teacher is connected-->
 
- <div id="loaddiv">   
- 
+ <div id="loaddiv">
 
+     <a href="{{ path('quizz_home') }}">Home</a>
 
          <p>
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <a href="{{ path('quizz_logout') }}">Выйти</a>
 {% else %}
-    <a href="{{ path('login') }}">Войти </a>
+    <a href="{{ path('login') }}">Войти</a>
 {% endif %}</p></div>
        
-        <h4>List of categories </h4>
+        <h4>Приложение находится в стадии разработки </h4>
        
-         {% for category in categories %}
 
 
-<div><h1><a class="test" href="{{ path('quizz_category', {'id':category.name}) }}">Категория {{category.name | easyName}}, {{category.name | nameIt}}.</a></h1></div><br>
+       
+         <div><h1>{{category.name | easyName}}</h1></div><br>
      
+          {% for test in category.tests %}
+     
+                 <div class="cell " ><a class="test"> <a class="test" href="{{ path('quizz_question', {'category':category.name,'numTest':test}) }}"> Билет {{ test }}</a></div>
+        
+          {% endfor %}
+  
 
-  {% endfor %}
   
   
 

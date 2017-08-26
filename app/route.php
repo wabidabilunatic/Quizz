@@ -12,11 +12,14 @@ $app->get('/',function() use ($app){
 /***
  *  first page of the quizz
  */
+    //index
+    $app->get('/quizz/',"Quizz\Controller\QuizzIndexController::indexAction")->bind('quizz_home');
+    //category page
 
-$app->get('/quizz/',"Quizz\Controller\QuizzIndexController::indexAction")->value('index','index')->bind('quizz_home');
+    $app->get('/category/{id}',"Quizz\Controller\QuizzCategoryController::indexAction")->bind('quizz_category');
 
-
-$app->get('/quizz/admin/uploadPage',"Quizz\Controller\QuizzIndexController::LoadPageAction")->bind('uploadPage');
+    //uploadPage
+    $app->get('/quizz/admin/uploadPage',"Quizz\Controller\QuizzIndexController::LoadPageAction")->bind('uploadPage');
 
 
 /***
@@ -29,6 +32,7 @@ $app->match('/quizz/test/{category}_{numTest}_{numQuestion}',"Quizz\Controller\Q
 
 
 /***
+ * Forms
  * Load files from form
  */
 $app->post('/load',"Quizz\Controller\LoadImageController::loadAction")->bind('loadImage');
@@ -133,8 +137,8 @@ $app->get('/script/setUpUsers',
             return new Response("fail");
     });
 
-
-/*$app->error(function (\Exception $e, Request $request, $code) use ($app) {
+/*
+$app->error(function (\Exception $e, Request $request, $code) use ($app) {
     switch ($code) {
         case 403:
             $message = 'Access denied.';

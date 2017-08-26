@@ -88,6 +88,19 @@ class QuizzDAO
       
     }
 
+    /***
+     * @return array list of all categories
+     */
+    public function getCategory($categoryId)
+    {
+        $category = new Category();
+        $category->setName($categoryId);
+        $category->setTests($this->getAllTestsOfCategory($category->getName()));
+        return $category;
+
+    }
+
+
     public function getAllCategoriesName()
     {
         $sqlSelectAllCategories ="SELECT ".QuizzDAO::$nameCategory." FROM ".QuizzDAO::$dbName." GROUP BY ".QuizzDAO::$nameCategory." ORDER BY ".QuizzDAO::$nameCategory;
@@ -98,7 +111,7 @@ class QuizzDAO
         foreach($results as $categoryArray)
         {
 
-            $categories[] = $categoryArray['Category'];
+            $categories[] = $categoryArray[QuizzDAO::$nameCategory];
         }
 
         return $categories;
