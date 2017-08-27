@@ -1,0 +1,130 @@
+html, body {
+  width: 100%;
+
+   font-family: 'Open Sans Condensed';
+     color: #6f7072;
+    font-size: 20px;}
+@media screen and (min-width: 900px) {
+    header{width: 50%;
+  margin: auto;    
+    }
+    #top span{
+        
+    display: inline;
+}
+}
+/*#top span{
+    display: none;
+}*/
+header{
+    width: 100%;
+    
+    vertical-align: middle;
+     font-size: 27px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+footer{ 
+ color: white;
+text-align: center;
+     background-color: #4c4c4c;
+     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-bottom: 0px;
+}
+.contacts{
+    margin-left: 20px;
+    margin-right: 20px;
+   display:inline-block;
+    background-color: #4c4c4c;
+width: auto;
+   
+}
+#logo1{
+    text-align: center;
+    width: 150px;
+    height: 60px;
+    padding-top: 10px;
+    
+}
+.icons{
+    padding-top: 10px;
+    height: auto;
+    width: 60px;
+}
+#top{
+    /* background-color: #50AF2F;*/
+    background-color: #4c4c4c;
+}
+
+
+#logo{
+    text-align: center;
+    padding-top:10px;
+}
+#cat1{
+    
+    
+    font-size: 24px;
+ font-weight: bold;
+}
+h2{
+   margin-top: 50px;
+    margin-left: 10px;
+}
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 24px;
+    
+    transition: 0.4s;
+    
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #50AF2F;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+   
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+.dropdown{
+  margin:20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+#time{
+    text-align: center;
+  margin: 10px;
+}
+#butt{
+    text-align: center;
+    margin: 20px;
+    
+}

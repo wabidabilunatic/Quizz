@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf8>
+        <link href="http//allfont.ru/allfont.css?fonts=ubuntu"
+        rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <style>
+     body{
+       margin:auto;
+        width:100%;
+        height: 100%;
+        font-family: 'Ubuntu', arial;
+        font-size: 15px;
+        color: #3B3939;
+         line-height:25px;
+        text-align: center;
+         
+     }
+         h4{
+             font-style: italic;
+             color: red;
+         }
+     .cell{
+        display:inline-block;
+        margin:20px;
+        }
+        .test
+        {
+    cursor:pointer;
+            font-family: 'Ubuntu', arial;
+        font-size: 18px;
+       
+         line-height:15px;
+            
+        }
+         .test:hover{
+              font-family: 'Ubuntu', arial;
+        font-size: 18px;
+       
+         line-height:15px;
+         text-decoration:none;
+         }
+         a{
+             cursor:pointer;
+         }
+         button{
+             margin: 20px;
+         }
+        #loaddiv
+        {width:300px;
+        height:100px;
+            margin:auto;
+  
+            background-color:#b2dcd7;
+           
+        }
+         
+        </style>
+    </head>
+    <body>
+
+<!---if teacher is connected-->
+
+ <div id="loaddiv">
+
+     <a href="{{ path('quizz_home') }}">Home</a>
+
+         <p>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('quizz_logout') }}">Выйти</a>
+{% else %}
+    <a href="{{ path('login') }}">Войти</a>
+{% endif %}</p></div>
+       
+        <h4>Category </h4>
+       
+
+
+       
+         <div><h1>{{category.name | easyName}}</h1></div><br>
+     
+          {% for test in category.tests %}
+     
+                 <div class="cell " ><a class="test"> <a class="test" href="{{ path('quizz_question', {'category':category.name,'numTest':test}) }}"> Билет {{ test }}</a></div>
+        
+          {% endfor %}
+  
+
+  
+  
+
+</body>
+</html>

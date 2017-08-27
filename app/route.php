@@ -137,17 +137,17 @@ $app->get('/script/setUpUsers',
             return new Response("fail");
     });
 
-/*
-$app->error(function (\Exception $e, Request $request, $code) use ($app) {
+
+/*$app->error(function (\Exception $e, Request $request, $code) use ($app) {
     switch ($code) {
         case 403:
-            $message = 'Access denied.';
+            $message = 'Доступ закрыт.';
             break;
         case 404:
-            $message = 'The requested resource could not be found.';
+            $message = 'Запрошенный ресурс не найден.';
             break;
         default:
-            $message = "Something went wrong.";
+            $message = "Что-то пошло не так.";
     }
     return $app['twig']->render('error.html.twig', array('message' => $message));
 });*/

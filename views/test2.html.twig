@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset=utf8>
-        <link href="http//allfont.ru/allfont.css?fonts=ubuntu"
-        rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset('/web/css/style.css') }}">
-    </head>
-    <body>
+{% extends "base.html.twig" %}
 
+{% block title %}Quizz - Категория {{category | easyName}}, {{category | nameIt}} {% endblock %}
+{% block head %}
+    {{ parent() }}
+    
+        <link rel="stylesheet" href="{{ asset('/web/css/style.css') }}">
+{% endblock %}
+{% block content %}
 <div>
     <header>
         
@@ -17,7 +15,7 @@
     <br>
     </header>
   
-<div>
+
 {#  top menu #}
    <a href="{{ path('quizz_home') }}">  Выбрать билет </a>
   <br>
@@ -126,19 +124,7 @@
          <input type="submit" id="submit" value="Go back to category"  >
          </form>
    {% endif %}
-</div>
- <footer>
-            <span class="contacts">
-                <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>
-                <p> Учебный центр профессиональной квалификации «ВИРМАЙН»</p>
-            </span>
-            <span class="contacts"><img class="icons" src="{{ asset('/web/img/Adress.PNG') }}"><br>300057 г.Тула, ул. Пузакова, д.20
-            </span>
-            <span class="contacts"><img class="icons" src="{{ asset('/web/img/mail.png') }}"><br>nou-virmain@mail.ru
-            </span>
-             <span class="contacts"><img class="icons" src="{{ asset('/web/img/phone.png') }}"><br>+7 (4872) 47-52-21
-            </span>
-        </footer>
+
   <script src="https://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
  <script type="text/javascript">
     
@@ -187,7 +173,5 @@ methods:
 });
 </script>
 
-</body>
-
-</html>
+{% endblock %}
 

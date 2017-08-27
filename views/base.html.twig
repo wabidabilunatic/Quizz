@@ -7,42 +7,29 @@
 
 
         <link rel="stylesheet" href="{{ asset('/web/css/style1.css') }}">
+               {% block head %}
+            <title>{% block title %}{% endblock %}</title>
+        {% endblock %}
+        
     </head>
     <body>
         
         <header> 
-            <div id="top"> <p id="logo"><a href="http://www.virmain.ru/"><img src="{{ asset('/web/img/logo.png') }}"></a></div>
+            <div id="top"> <p id="logo"><a href="http://www.virmain.ru/"><img src="{{ asset('/web/img/logo.png') }}"></a></p>ЭКЗАМЕНАЦИОННЫЕ БИЛЕТЫ<span> ДЛЯ ПРИЕМА ТЕОРЕТИЧЕСКИХ ЭКЗАМЕНОВ НА ПРАВО УПРАВЛЕНИЯ САМОХОДНЫМИ МАШИНАМИ  ИНСПЕКЦИЕЙ ГОСТЕХНАДЗОРА ТУЛЬСКОЙ ОБЛАСТИ</span></div>
         </header>
         
-        <div id="content">
-        <a id="main" href="{{ path('quizz_home') }}">Вернуться на главную </a>
-         
-       
+        {% block content %}{% endblock %}
 
-
-       
-         <div id="cat"><h2><b>Категория {{category.name | easyName}}<br> {{category.name | nameIt}}</h2></b></div><br>
-     
-         
-     
-              <!--   <div class="cell " ><a class="test"> <a class="test" href=> Билет </a></div>-->
-                   {% for test in category.tests %}
-     
-                 <div class="cell " ><a class="test"> <a class="test" href="{{ path('quizz_question', {'category':category.name,'numTest':test}) }}"> Билет {{ test }}</a></div>
-        
-                   {% endfor %}
-        
-        </div>
         <footer>
             <span class="contacts">
                 <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>
                 <p> Учебный центр профессиональной квалификации «ВИРМАЙН»</p>
             </span>
-            <span class="contacts"><img class="icons" src="{{ asset('/web/img/Adress.PNG') }}"><br>300057 г.Тула, ул. Пузакова, д.20
+            <span class="contacts"><img class="icons" src="{{ asset('/web/img/Adress.PNG') }}"><br>Адрес: 300057 г.Тула, ул. Пузакова, д.20
             </span>
-            <span class="contacts"><img class="icons" src="{{ asset('/web/img/mail.png') }}"><br>nou-virmain@mail.ru
+            <span class="contacts"><img class="icons" src="{{ asset('/web/img/mail.png') }}"><br>E-mail: nou-virmain@mail.ru
             </span>
-             <span class="contacts"><img class="icons" src="{{ asset('/web/img/phone.png') }}"><br>+7 (4872) 47-52-21
+             <span class="contacts"><img class="icons" src="{{ asset('/web/img/phone.png') }}"><br>Телефон: +7 (4872) 47-52-21
             </span>
         </footer>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 

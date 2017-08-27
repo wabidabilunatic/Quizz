@@ -1,2 +1,17 @@
-
-        <h1>Whoops...<br><small>{{ message }}</small></h1>
+{% extends "base.html.twig" %}
+{% block title %}Error{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .content{
+            padding-left:20px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="content">
+        <h1>Woops...<br><small>{{ message }}</small></h1>
+        <br>
+         <a id="main" href="{{ path('quizz_home') }}">Вернуться на главную </a>
+   </div>     
+{% endblock %}
