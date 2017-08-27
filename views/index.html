@@ -84,9 +84,9 @@ for (i = 0; i < acc.length; i++) {
       <a class="dropdown-item" href="#">Категория «F», тракторист-машинист</a> #}
       
          {% for category in categories %}
-
+                {% if category.name != "F1" and category.name != "P1"%}
                    <a class="dropdown-item" href="{{ path('quizz_category', {'id':category.name}) }}">Категория {{category.name | easyName}}, {{category.name | nameIt}}.</a>
-
+                {% endif %}
               {% endfor %} 
  {# <a class="dropdown-item" href="{{ path('quizz_category', {'id':'P1'}) }}">ПДД для всех категорий самоходных машин</a>#}
 
