@@ -88,11 +88,11 @@ for (i = 0; i < acc.length; i++) {
                    <a class="dropdown-item" href="{{ path('quizz_category', {'id':category.name}) }}">Категория {{category.name | easyName}}, {{category.name | nameIt}}.</a>
 
               {% endfor %} 
- {# <a class="dropdown-item" href="#">ПДД для всех категорий самоходных машин</a>#}
+ {# <a class="dropdown-item" href="{{ path('quizz_category', {'id':'P1'}) }}">ПДД для всех категорий самоходных машин</a>#}
 
   </div>
 </div>
-   <div id= "butt">     <button type="button" class="btn btn-secondary">ПДД для всех категорий</button></div>
+   <div id= "butt">  <form action="{{ path('quizz_category', {'id':'P1'}) }}">  <input type="submit" class="btn btn-secondary" value="ПДД для всех категорий" /></form> </div>
         <footer>
             <span class="contacts">
                 <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>

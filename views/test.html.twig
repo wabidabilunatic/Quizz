@@ -19,7 +19,7 @@
   
 <div>
 {#  top menu #}
-   <a href="{{ path('quizz_home') }}">  Выбрать билет </a>
+   <a href="{{ path('quizz_category', {'id':category}) }}">  Выбрать билет </a>
   <br>
 
   <br>
@@ -123,14 +123,14 @@
       you succedeed
       {% endif %}
    <form action="{{ path('quizz_category', {'id':category}) }}">
-         <input type="submit" id="submit" value="Go back to category"  >
+         <input type="submit" id="submit" value="Выбрать билет"  >
          </form>
    {% endif %}
 </div>
  <footer>
             <span class="contacts">
                 <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>
-                <p> Учебный центр профессиональной квалификации «ВИРМАЙН»</p>
+                 Учебный центр профессиональной квалификации «ВИРМАЙН»
             </span>
             <span class="contacts"><img class="icons" src="{{ asset('/web/img/Adress.PNG') }}"><br>300057 г.Тула, ул. Пузакова, д.20
             </span>

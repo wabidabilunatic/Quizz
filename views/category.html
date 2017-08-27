@@ -21,7 +21,16 @@
 
 
        
-         <div id="cat"><h2><b>Категория {{category.name | easyName}}<br> {{category.name | nameIt}}</h2></b></div><br>
+         <div id="cat"><h2><b>
+          {% if category.name == "P1" %}
+        <!--  if it's P1, what to show -->
+          ПДД
+          {% else %}
+        <!--  For others categories-->
+          Категория {{category.name | easyName}}<br> {{category.name | nameIt}}</h2>
+          {% endif %}
+         
+         </b></div><br>
      
          
      
