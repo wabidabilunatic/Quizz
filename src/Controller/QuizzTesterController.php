@@ -10,7 +10,7 @@
         use Quizz\Domain\Question;
         use Symfony\Component\HttpFoundation\Response;
         use Symfony\Component\HttpFoundation\Request;
-        
+
         
         use Silex\Application;
         
@@ -108,7 +108,7 @@
            
                         $content = $app['twig']->render('test.html.twig', array('question' =>  $question,'category'=>$category,'numTest'=>$numTest,'numQuestion'=>$numQuestion,'numberOfQuestions'=>$numberOfQuestions,'correctAnswers'=>$correctAnswers,'finished'=>$finished,'totalCorrects'=>$totalCorrects,'timeUsed'=>$timeUsed));
              
-                         return new Response($content, 303);
+                         return new Response($content);
            
                        }
                        
