@@ -65,8 +65,14 @@
     </div>
     
 <br/>
-  
+   <div id="instance">
+{#  if the Quizz is still running on #}
     {% if not finished %}
+    <br>
+    time used :    {% raw %}  {{ displayTime }}   {% endraw %}
+    <br>
+  
+
 {#  picture#}
   <img src="{{ asset('/web/images/'~question.addr) }}"> <br/>
   
@@ -80,12 +86,13 @@
    
  {# answers#}
  
-   <div id="instance">
+
        
        
        {% raw %}
          <span id="showResult">{{ correctResult }}    </span>
        {% endraw %}
+     
        
        
           {% if numQuestion != numberOfQuestions %}
@@ -119,6 +126,8 @@
 
  {% else %}
 {# it will display this message at the end of test#}
+  time spent on quiz : {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}
+<br>
     <h3>  Тест завершён!<br></h3>
       Вы ответили правильно на вопросы:<br>
       <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
@@ -131,6 +140,10 @@
       {% endif %}
    <form action="{{ path('quizz_category', {'id':category}) }}">
          <input type="submit" id="submit" value="Выбрать билет"  >
+         </form>
+         
+            <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
+         <input type="submit" id="submit" value="Redo te quiz"  >
          </form>
    {% endif %}
 </div>
@@ -155,12 +168,34 @@
 el:'#instance',
 data:{
     finished:false,
-    correctResult: ''
+    correctResult: '',
+    timer: 0,
+    displayTime:"",
+    time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
+    start:0
     
+},
+created: function()
+{
+  this.timer = setInterval(this.showTime,1000);
+  this.start = this.time;
 },
 methods:
 {
+    showTime:function()
+ {
+
+     console.log(new Date({{ timeUsed * 1000 }}));
     
+    this.start+=1000;
+    let time = this.start/1000;
+ 	let m = Math.floor(time/60);
+ 	let s = Math.ceil(time%60);
+ 	this.displayTime =  m+":"+s;
+ 	
+ 	 console.log(this.start);
+     
+ },
     checkCorrectAnswer:function(id)
     {
 
