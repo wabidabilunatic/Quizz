@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Quizz\Domain\Category;
@@ -138,7 +138,7 @@ $app->get('/script/setUpUsers',
     });
 
 
-/*$app->error(function (\Exception $e, Request $request, $code) use ($app) {
+$app->error(function (\Exception $e, Request $request, $code) use ($app) {
     switch ($code) {
         case 403:
             $message = 'Доступ закрыт.';
@@ -150,7 +150,7 @@ $app->get('/script/setUpUsers',
             $message = "Что-то пошло не так.";
     }
     return $app['twig']->render('error.html.twig', array('message' => $message));
-});*/
+});
 
 $app->get('/login', function(Request $request) use ($app) {
     return $app['twig']->render('login.html.twig', array(

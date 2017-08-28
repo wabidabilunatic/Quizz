@@ -3,13 +3,15 @@
 {% block head %}
     {{ parent() }}
     <style type="text/css">
-        .content{
-            padding-left:20px;
-        }
+    #content{ padding-top:20px;
+      min-height: -webkit-calc(100% - 100px);     /* Chrome */
+    min-height: -moz-calc(100% - 100px);     /* Firefox */
+    min-height: calc(100% - 100px);     /* native */
+    }
     </style>
 {% endblock %}
 {% block content %}
-<div class="content">
+<div id="content">
         <h1>Woops...<br><small>{{ message }}</small></h1>
         <br>
          <a id="main" href="{{ path('quizz_home') }}">Вернуться на главную </a>

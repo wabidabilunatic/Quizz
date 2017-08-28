@@ -13,7 +13,14 @@
     <header>
         
   <h2>Билет {{numTest}}</h2>
-   <h3> Категория {{category | easyName}}, {{category | nameIt}}</h3>
+   <h3>      {% if category == "P1" %}
+        <!--  if it's P1, what to show -->
+          ПДД для всех категорий
+          {% else %}
+        <!--  For others categories-->
+          Категория {{category | easyName}}<br> {{category | nameIt}}
+          {% endif %}
+         </h3>
     <br>
     </header>
   
@@ -117,10 +124,10 @@
       <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
       
      {# failed or succeded #}
-      {% if (numberOfQuestions < 5 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 2 )%}
-      you failed
+      {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
+       <h1> Вы не сдали тест.</h1>
       {% else %}
-      you succedeed
+       <h1> Вы успешно прошли тест.</h1>
       {% endif %}
    <form action="{{ path('quizz_category', {'id':category}) }}">
          <input type="submit" id="submit" value="Выбрать билет"  >

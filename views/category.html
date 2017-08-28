@@ -15,7 +15,7 @@
         </header>
         
         <div id="content">
-        <a id="main" href="{{ path('quizz_home') }}">Вернуться на главную </a>
+        <a id="main" href="{{ path('quizz_home') }}">Вернуться к списку категорий и экзаменов </a>
          
        
 
@@ -24,7 +24,7 @@
          <div id="cat"><h2><b>
           {% if category.name == "P1" %}
         <!--  if it's P1, what to show -->
-          ПДД
+          ПДД<br>для всех категорий
           {% else %}
         <!--  For others categories-->
           Категория {{category.name | easyName}}<br> {{category.name | nameIt}}</h2>
@@ -32,7 +32,7 @@
          
          </b></div><br>
      
-         
+        
      
               <!--   <div class="cell " ><a class="test"> <a class="test" href=> Билет </a></div>-->
                    {% for test in category.tests %}
