@@ -133,21 +133,23 @@
       <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
       
      {# failed or succeded #}
-      {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
-       <h1> Вы не сдали тест.</h1>
-      {% else %}
-       <h1> Вы успешно прошли тест.</h1>
-      {% endif %}
-   <form action="{{ path('quizz_category', {'id':category}) }}">
-         <input type="submit" id="submit" value="Выбрать билет"  >
-         </form>
-         
-            <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
-         <input type="submit" id="submit" value="Redo te quiz"  >
+  {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
+         <h1> Вы не сдали тест.</h1>
+  {% else %}
+         <h1> Вы успешно прошли тест.</h1>
+  {% endif %}
+  
+        {# go back  to category page#}
+         <form action="{{ path('quizz_category', {'id':category}) }}">
+           <input type="submit" id="submit" value="Выбрать билет"  >
+           </form>
+        {# relaunch the quizz#}
+           <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
+           <input type="submit" id="submit" value="Redo te quiz"  >
          </form>
    {% endif %}
 </div>
- <footer>
+        <footer>
             <span class="contacts">
                 <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>
                  Учебный центр профессиональной квалификации «ВИРМАЙН»
@@ -170,7 +172,7 @@ data:{
     finished:false,
     correctResult: '',
     timer: 0,
-    displayTime:"",
+    displayTime:" {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}",
     time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
     start:0
     
@@ -189,8 +191,11 @@ methods:
     
     this.start+=1000;
     let time = this.start/1000;
- 	let m = Math.floor(time/60);
- 	let s = Math.ceil(time%60);
+ 	var m = Math.floor(time/60);
+ 	m = (Math.floor(m/10) == 0)? "0"+m:m;
+ 	
+ 	var s = Math.ceil(time%60);
+ 		s = (Math.floor(s/10) == 0)? "0"+s:s;
  	this.displayTime =  m+":"+s;
  	
  	 console.log(this.start);
