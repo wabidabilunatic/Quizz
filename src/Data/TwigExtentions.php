@@ -45,9 +45,12 @@ public static function easyName($shortName)
       $first = $shortName[0];
       $second = $shortName[1]-1;
       $out = "«".$first;
-      if($first == 'A' && !empty($second))
+        if($first == 'A'  )
+      {
+          $second = empty($second)? 0:$second;
           $out .= [" I"," II"," III"," IV"][$second];
-
+          
+      }
 
       $out = $out."»";
 

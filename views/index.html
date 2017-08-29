@@ -1,114 +1,117 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset=utf8>
-       <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<head>
+    <meta charset=utf8>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
 
-        <link rel="stylesheet" href="{{ asset('/web/css/style0.css') }}">
-    </head>
-    <body>
-        
-        <header> 
-            <div id="top"> <p id="logo"><a href="http://www.virmain.ru/"><img src="{{ asset('/web/img/logo.png') }}"></a></p>ЭКЗАМЕНАЦИОННЫЕ БИЛЕТЫ<span> ДЛЯ ПРИЕМА ТЕОРЕТИЧЕСКИХ ЭКЗАМЕНОВ НА ПРАВО УПРАВЛЕНИЯ САМОХОДНЫМИ МАШИНАМИ  ИНСПЕКЦИЕЙ ГОСТЕХНАДЗОРА ТУЛЬСКОЙ ОБЛАСТИ</span></div>
-        </header>
-        
-<h2>Категории самоходных машин</h2>
+    <link rel="stylesheet" href="{{ asset('/web/css/style0.css') }}">
+</head>
 
-<button class="accordion">Категория «А»</button>
-<div class="panel">
-    <p><span id="cat1">Категория «А»</span> - автомототранспортные средства, не предназначенные для движения по автомобильным дорогам общего пользования либо имеющие максимальную конструктивную скорость 50 км/ч и менее. Категория А разделена на четыре подкатегории:</p> 
-<p><span id="cat1">A I</span> - внедорожные мототранспортные средства (снегоходы, квадроциклы, снегоболотоходы);</p>
+<body>
+
+    <header>
+        <div id="top">
+            <p id="logo">
+                <a href="http://www.virmain.ru/"><img src="{{ asset('/web/img/logo.png') }}"></a>
+            </p>ЭКЗАМЕНАЦИОННЫЕ БИЛЕТЫ<span> ДЛЯ ПРИЕМА ТЕОРЕТИЧЕСКИХ ЭКЗАМЕНОВ<br> НА ПРАВО УПРАВЛЕНИЯ САМОХОДНЫМИ МАШИНАМИ  ИНСПЕКЦИЕЙ ГОСТЕХНАДЗОРА ТУЛЬСКОЙ ОБЛАСТИ</span></div>
+    </header>
+    <div id="content">
+<a id="back" href="http://www.virmain.ru/"><img id="backimg" src="{{ asset('/web/img/back.png') }}">Вернуться на сайт</a>
+    <h3>Категории самоходных машин</h3>
+
+    <button class="accordion">Категория «А»</button>
+    <div class="panel">
+        <p><span id="cat1">Категория «А»</span> - автомототранспортные средства, не предназначенные для движения по автомобильным дорогам общего пользования либо имеющие максимальную конструктивную скорость 50 км/ч и менее. Категория А разделена на четыре подкатегории:</p>
+        <p><span id="cat1">A I</span> - внедорожные мототранспортные средства (снегоходы, квадроциклы, снегоболотоходы);</p>
         <p><span id="cat1">A II</span> - внедорожные автотранспортные средства, разрешенная максимальная масса которых не превышает 3500 килограммов и число сидячих мест которых, помимо сиденья водителя, не превышает 8;</p>
-<p><span id="cat1">A III</span> - внедорожные автотранспортные средства, разрешенная максимальная масса которых превышает 3500 килограммов (за исключением относящихся к категории "A IV") (карьерные самосвалы);</p>
-<p><span id="cat1">A IV </span>- внедорожные автотранспортные средства, предназначенные для перевозки пассажиров и имеющие, помимо сиденья водителя, более 8 сидячих мест.</p>
-    
-</div>
+        <p><span id="cat1">A III</span> - внедорожные автотранспортные средства, разрешенная максимальная масса которых превышает 3500 килограммов (за исключением относящихся к категории "A IV") (карьерные самосвалы);</p>
+        <p><span id="cat1">A IV </span>- внедорожные автотранспортные средства, предназначенные для перевозки пассажиров и имеющие, помимо сиденья водителя, более 8 сидячих мест.</p>
 
-<button class="accordion">Категория «B»</button>
-<div class="panel">
-  <span id="cat1">Категория «B»</span> - гусеничные и колесные машины с двигателем мощностью до 25,7 Вт.
-</div>
+    </div>
 
-<button class="accordion">Категория «C»</button>
-<div class="panel">
-  <span id="cat1">Категория «С»</span> - колесные машины с двигателем мощностью от 25,7 до 110,3 квт.
-</div>
-      <button class="accordion">Категория «D»</button>
-<div class="panel">
-  <span id="cat1">Категория «D»</span> - колесные машины двигателем мощностью свыше 110,3 квт.
-</div>
-        <button class="accordion">Категория «E»</button>
-<div class="panel">
-  <span id="cat1">Категория «Е»</span> - гусеничные машины с двигателем мощностью свыше 25,7 квт.
-</div>
-        <button class="accordion">Категория «F»</button>
-<div class="panel">
-  <span id="cat1">Категория «F»</span> - самоходные сельскохозяйственные машины (комбайны).
-</div>
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+    <button class="accordion">Категория «B»</button>
+    <div class="panel">
+        <span id="cat1">Категория «B»</span> - гусеничные и колесные машины с двигателем мощностью до 25,7 Вт.
+    </div>
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  }
-}
-</script>
-        <p id="time"><b>Время, отведенное на ответы на билет (на все – 10 мин., на ПДД – 20 мин.)</b></p> 
-        <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="accordion">Категория «C»</button>
+    <div class="panel">
+        <span id="cat1">Категория «С»</span> - колесные машины с двигателем мощностью от 25,7 до 110,3 квт.
+    </div>
+    <button class="accordion">Категория «D»</button>
+    <div class="panel">
+        <span id="cat1">Категория «D»</span> - колесные машины двигателем мощностью свыше 110,3 квт.
+    </div>
+    <button class="accordion">Категория «E»</button>
+    <div class="panel">
+        <span id="cat1">Категория «Е»</span> - гусеничные машины с двигателем мощностью свыше 25,7 квт.
+    </div>
+    <button class="accordion">Категория «F»</button>
+    <div class="panel">
+        <span id="cat1">Категория «F»</span> - самоходные сельскохозяйственные машины (комбайны).
+    </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            }
+        }
+    </script>
+    <p id="time"><b>Время, отведенное на ответы на билет (на все – 10 мин., на ПДД – 20 мин.)</b></p>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Выберите категорию самоходных машин и экзамен
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-{#    <a class="dropdown-item" href="#">Категория «А I», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «А II», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «А III», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «А IV», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «B», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «B», тракторист-машинист</a>
-    <a class="dropdown-item" href="#">Категория «C», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «C», тракторист-машинист</a>
-    <a class="dropdown-item" href="#">Категория «D», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «D», тракторист-машинист</a>
-    <a class="dropdown-item" href="#">Категория «E», безопасная эксплуатация</a>
-    <a class="dropdown-item" href="#">Категория «E», тракторист-машинист</a>
-      <a class="dropdown-item" href="#">Категория «F», тракторист-машинист</a> #}
-      
-         {% for category in categories %}
-                {% if category.name != "F1" and category.name != "P1"%}
-                   <a class="dropdown-item" href="{{ path('quizz_category', {'id':category.name}) }}">Категория {{category.name | easyName}}, {{category.name | nameIt}}.</a>
-                {% endif %}
-              {% endfor %} 
- {# <a class="dropdown-item" href="{{ path('quizz_category', {'id':'P1'}) }}">ПДД для всех категорий самоходных машин</a>#}
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {# <a class="dropdown-item" href="#">Категория «А I», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «А II», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «А III», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «А IV», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «B», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «B», тракторист-машинист</a>
+            <a class="dropdown-item" href="#">Категория «C», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «C», тракторист-машинист</a>
+            <a class="dropdown-item" href="#">Категория «D», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «D», тракторист-машинист</a>
+            <a class="dropdown-item" href="#">Категория «E», безопасная эксплуатация</a>
+            <a class="dropdown-item" href="#">Категория «E», тракторист-машинист</a>
+            <a class="dropdown-item" href="#">Категория «F», тракторист-машинист</a> #} {% for category in categories %} {% if category.name != "F1" and category.name != "P1"%}
+            <a class="dropdown-item" href="{{ path('quizz_category', {'id':category.name}) }}">Категория {{category.name | easyName}}, {{category.name | nameIt}}.</a> {% endif %} {% endfor %} {# <a class="dropdown-item" href="{{ path('quizz_category', {'id':'P1'}) }}">ПДД для всех категорий самоходных машин</a>#}
 
-  </div>
-</div>
-   <div id= "butt">  <form action="{{ path('quizz_category', {'id':'P1'}) }}">  <input type="submit" class="btn btn-secondary" value="ПДД для всех категорий" /></form> </div>
-        <footer>
-            <span class="contacts">
+        </div>
+    </div>
+    <div id="butt">
+        <form action="{{ path('quizz_category', {'id':'P1'}) }}"> <input type="submit" class="btn btn-secondary" value="ПДД для всех категорий" /></form>
+    </div>
+    </div>
+    <footer>
+        <span class="contacts">
                 <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>
                 <p> Учебный центр профессиональной квалификации «ВИРМАЙН»</p>
             </span>
-            <span class="contacts"><img class="icons" src="{{ asset('/web/img/Adress.PNG') }}"><br>Адрес: 300057 г.Тула, ул. Пузакова, д.20
+        <span class="contacts"><img class="icons" src="{{ asset('/web/img/Adress.PNG') }}"><br>Адрес: 300057 г.Тула, ул. Пузакова, д.20
             </span>
-            <span class="contacts"><img class="icons" src="{{ asset('/web/img/mail.png') }}"><br>E-mail: nou-virmain@mail.ru
+        <span class="contacts"><img class="icons" src="{{ asset('/web/img/mail.png') }}"><br>E-mail: nou-virmain@mail.ru
             </span>
-             <span class="contacts"><img class="icons" src="{{ asset('/web/img/phone.png') }}"><br>Телефон: +7 (4872) 47-52-21
+        <span class="contacts"><img class="icons" src="{{ asset('/web/img/phone.png') }}"><br>Телефон: +7 (4872) 47-52-21
             </span>
-        </footer>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
-         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    </body>
-    
+    </footer>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+
 </html>

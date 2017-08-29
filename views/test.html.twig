@@ -24,20 +24,16 @@
     <br>
     </header>
   
-
+<div id="content">
 {#  top menu #}
-   <a href="{{ path('quizz_category', {'id':category}) }}">  Выбрать билет </a>
-  <br>
+   <a href="{{ path('quizz_category', {'id':category}) }}">  Вернуться к списку билетов </a>
+ 
 
-  <br>
-  <div id="content">
 {#  progress bar
   <progress value="{{correctAnswers| length}}" max="{{numberOfQuestions}}"></progress> {{correctAnswers| length}}/{{numberOfQuestions}}
  #}
  <br>
   
-
-  <br>
   
   <div id="table">
       {#  display of correct/failed answers#}
@@ -45,21 +41,32 @@
          
              <div class="cell {{ (r) ? 'correct' : 'wrong' }}" >{{r}}</div>
       {% endfor %}#}
+  
+  
+
         {% for i in 1..numberOfQuestions%}
+        
+           
+             
              {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
+             
                <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" >{{i}}</div>
+               
              {% else %}
+             
                <div class="cell" >{{i}}</div>
              {% endif %}
+             
         {% endfor %}
+
     </div>
     
 <br/>
    <div id="instance">
 {#  if the Quizz is still running on #}
-{% if not finished %}
+    {% if not finished %}
     <br>
-    time used :    {% raw %}  {{ displayTime }}   {% endraw %}
+    Время :    {% raw %}  {{ displayTime }}   {% endraw %}
     <br>
   
 
@@ -115,32 +122,29 @@
 
 
  {% else %}
-        {# it will display this message at the end of test#}
-          time spent on quiz : {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}
-        <br>
-            <h3>  Тест завершён!<br></h3>
-              Вы ответили правильно на вопросы:<br>
-              <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
+{# it will display this message at the end of test#}
+  Время : {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}
+<br>
+    <h3>  Тест завершён!<br></h3>
+      Вы ответили правильно на вопросы:<br>
+      <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
       
-                     {# failed or succeded #}
-                  {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
-                         <h1> Вы не сдали тест.</h1>
-                  {% else %}
-                         <h1> Вы успешно прошли тест.</h1>
-                  {% endif %}
-  
-            {# go back  to category page#}
-             <form action="{{ path('quizz_category', {'id':category}) }}">
-               <input type="submit" id="submit" value="Выбрать билет"  >
-               </form>
-            {# relaunch the quizz#}
-               <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
-               <input type="submit" id="submit" value="Redo te quiz"  >
-             </form>
-             </div>
+     {# failed or succeded #}
+      {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
+       <h1> Вы не сдали тест.</h1>
+      {% else %}
+       <h1> Вы успешно прошли тест.</h1>
+      {% endif %}
+   <form action="{{ path('quizz_category', {'id':category}) }}">
+         <input type="submit" id="submit" value="Продолжить тестирование"  >
+         </form>
+         
+            <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
+         <input type="submit" id="submit" value="Попробовать еще раз"  >
+         </form>
    {% endif %}
 </div>
-        <footer>
+ <footer>
             <span class="contacts">
                 <a href="http://www.virmain.ru/"><img id="logo1" src="{{ asset('/web/img/logo1.png') }}"></a><br>
                  Учебный центр профессиональной квалификации «ВИРМАЙН»
@@ -154,8 +158,7 @@
         </footer>
   <script src="https://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
  <script type="text/javascript">
-
-
+    
 
   	var vm = new Vue(
   	{
@@ -164,39 +167,22 @@ data:{
     finished:false,
     correctResult: '',
     timer: 0,
-    displayTime:" {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}",
+    displayTime:" {{ (('now'|date('U')) - timeUsed+1) | date('i:s')  }}",
     time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
     start:0
     
 },
 created: function()
 {
-    this.hideFooter();
-    window.addEventListener('resize',this.hideFooter);
-    this.timer = setInterval(this.showTime,1000);
-    this.start = this.time;
+  this.timer = setInterval(this.showTime,1000);
+  this.start = this.time;
 },
 methods:
 {
- //  when to footer overflow the content block, actions in needed
-    hideFooter:function()
-    {
-        console.log("resize needed");
-        var content = document.querySelector('#content');
-        var footer =document.querySelector('footer');
-        if(content.getBoundingClientRect().bottom  >= footer.getBoundingClientRect().top )
-        {
-            this.go(footer);
-        }
-        else
-        {
-             this.go2(footer);
-        }
-    },
-    //display good ass looking timer
     showTime:function()
  {
-    this.start+=1000;
+
+     this.start+=1000;
     let time = this.start/1000;
  	var m = Math.floor(time/60);
  	m = (Math.floor(m/10) == 0)? "0"+m:m;
@@ -206,22 +192,6 @@ methods:
  	this.displayTime =  m+":"+s;
   
  },
- go:function(d)
- {
-  console.log("relative");
-  d.style.position = "relative";
-  d.style.left = 0+'px';
-  d.style.bottom = 0+'px';
-  d.style.right = 0+'px';
- },
-  go2:function(d)
- {
- console.log("absolute");
-  d.style.position = "absolute";
-  d.style.left = 0+'px';
-  d.style.bottom = 0+'px';
-  d.style.right = 0+'px';
- },
     checkCorrectAnswer:function(id)
     {
 
@@ -229,16 +199,20 @@ methods:
          document.getElementById("l"+{{question.correctAnswer}}).style.color="green";
         if(id == {{question.correctAnswer}}) 
         {
-         //CORRECT ANSWER
+            //CORRECT ANSWER
          this.correctResult = "Правильный ответ!";
+         
          document.getElementById("showResult").className += "correct_ans";
         }
         else
         {
-          //WRONG ANSWER
+            
+            //WRONG ANSWER
           this.correctResult = "Неправильный ответ! Правильный ответ: "+{{question.correctAnswer}}; 
-          document.getElementById("showResult").className += "wrong_ans";
-        }  
+           document.getElementById("showResult").className += "wrong_ans";
+        }
+         
+         
     },
     send:function()
     {
@@ -249,9 +223,6 @@ methods:
     
 }
 });
-
-
-
 </script>
 
 </body>
