@@ -1,39 +1,42 @@
 {# it will display this message at the end of test#}
 
 <div id="table">
-    {#  display of correct/failed answers#}
-    {#      {% for r in correctAnswers%}
-
-                 <div class="cell {{ (r) ? 'correct' : 'wrong' }}" >{{r}}</div>
-          {% endfor %}#}
-
-
-
+    {#  header display of correct/failed answers#}
     {% for i in 1..numberOfQuestions%}
-
-
-
+        {#when the user click on cell it display the image #}
+        {#of the question#}
         {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
-
-            <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" @click="showPictureAnswer({{i}})" >{{i}}</div>
-
+            <div class="cell  {{ (correctAnswers[i-1].result ) ? 'correct' : 'wrong' }}" @click="showPictureAnswer({{i}})" >{{i}}</div>
         {% else %}
-
             <div class="cell" @click="showPictureAnswer({{i}})">{{i}}</div>
         {% endif %}
-
     {% endfor %}
-
 </div>
-<img src="{% raw %}{{selectedImage}}{% endraw %}">
+
+
+{#here it is the place where
+the image of the selected question is displayed#}
+{% raw %}
+
+<div v-show="wannaSee">
+<img src="{{selectedImage}}">
+    <br>
+   correct {{correctAnswer}} , your answer : {{yourAnswer}}
+</div>
+{% endraw %}
 <br/>
 
 
-Время : {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}
+
+{#timer#}
+Время : {{ ((('now'|date('U')) - timeUsed+2)>0)? (('now'|date('U')) - timeUsed+2):0 | date('i:s')  }}
+{#29-9 : tried to fix the glitched timer#}
 <br>
 <h3>  Тест завершён!<br></h3>
 Вы ответили правильно на вопросы:<br>
 <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
+
+
 
 {# failed or succeded #}
       {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
@@ -48,3 +51,9 @@
 <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
     <input type="submit" id="submit" value="Попробовать еще раз"  >
 </form>
+
+
+{#Display pictures for catégories P#}
+{% if category starts with 'P' %}
+<img src="{{ asset('/web/img/P1/'~numTest~'.jpg') }}" >
+{% endif %}

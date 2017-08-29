@@ -13,7 +13,7 @@
 
         {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
 
-            <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" >{{i}}</div>
+            <div class="cell  {{ (correctAnswers[i-1].result ) ? 'correct' : 'wrong' }}" >{{i}}</div>
 
         {% else %}
 

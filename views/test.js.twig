@@ -3,14 +3,24 @@ var vm = new Vue(
     {
         el:'#instance',
         data:{
+            //when user want to see all his+her mistakes
+            // it shows image
+            // correct answers
+            // his answers
             selectedImage: "",
+            correctAnswer: "",
+            yourAnswer: "",
+            wannaSee:false,
+
+
             finished:false,
             correctResult: '',
             timer: 0,
             displayTime:" {{ (('now'|date('U')) - timeUsed+1) | date('i:s')  }}",
             time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
             start:0,
-            images: [{% for q in questions %}"{{ asset('/web/images/'~q.addr) }}"{{ ((loop.index) < (questions|length))? ",":"" }}{% endfor %}]
+            images: [{% for q in questions %}{"img":"{{ asset('/web/images/'~q.addr) }}","correctAnswer":"{{q.correctAnswer}}"}{{ ((loop.index) < (questions|length))? ",":"" }}{% endfor %}],
+            answers: [{% for yourAnswer in correctAnswers %}{{yourAnswer.answer}}{{ ((loop.index) < (correctAnswers|length))? ",":"" }}{% endfor %}]
 
         },
         created: function()
@@ -22,8 +32,11 @@ var vm = new Vue(
             {
                showPictureAnswer:function(id)
                {
+                   this.wannaSee = true;
                     console.log("you clicked on "+this.images[id-1]);
-                   this.selectedImage = this.images[id-1];
+                   this.selectedImage = this.images[id-1].img;
+                   this.correctAnswer = this.images[id-1].correctAnswer;
+                   this.yourAnswer = this.answers[id-1];
                },
                 showTime:function()
                 {

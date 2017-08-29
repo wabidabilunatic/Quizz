@@ -80,7 +80,7 @@
                     
                                  
                                      //save if the answer correspond to answer
-                                      $correctAnswers[] = ($correctAns == $questionAnswer)?true:false;
+                                      $correctAnswers[] = array("result"=>($correctAns == $questionAnswer)?true:false,"answer"=>$questionAnswer);
                                      
                                      
                                      //count all correct answers
