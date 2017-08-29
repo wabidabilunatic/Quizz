@@ -10,7 +10,7 @@ var vm = new Vue(
             displayTime:" {{ (('now'|date('U')) - timeUsed+1) | date('i:s')  }}",
             time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
             start:0,
-            images: [{% for q in questions %}"{{ asset('/web/images/'~q.addr) }} {{ (loop.index + 1 < question|length)? ",":"" }}"{% endfor %}]
+            images: [{% for q in questions %}"{{ asset('/web/images/'~q.addr) }}"{{ ((loop.index) < (questions|length))? ",":"" }}{% endfor %}]
 
         },
         created: function()

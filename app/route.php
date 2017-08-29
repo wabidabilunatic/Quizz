@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Quizz\Domain\Category;
