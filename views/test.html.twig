@@ -27,121 +27,20 @@
 <div id="content">
 {#  top menu #}
    <a href="{{ path('quizz_category', {'id':category}) }}">  Вернуться к списку билетов </a>
- 
 
 {#  progress bar
   <progress value="{{correctAnswers| length}}" max="{{numberOfQuestions}}"></progress> {{correctAnswers| length}}/{{numberOfQuestions}}
  #}
  <br>
-  
-  
-  <div id="table">
-      {#  display of correct/failed answers#}
-{#      {% for r in correctAnswers%}
-         
-             <div class="cell {{ (r) ? 'correct' : 'wrong' }}" >{{r}}</div>
-      {% endfor %}#}
-  
-  
-
-        {% for i in 1..numberOfQuestions%}
-        
-           
-             
-             {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
-             
-               <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" >{{i}}</div>
-               
-             {% else %}
-             
-               <div class="cell" >{{i}}</div>
-             {% endif %}
-             
-        {% endfor %}
-
-    </div>
-    
-<br/>
    <div id="instance">
-{#  if the Quizz is still running on #}
-    {% if not finished %}
-    <br>
-    Время :    {% raw %}  {{ displayTime }}   {% endraw %}
-    <br>
-  
+       {% if not finished %}
 
-{#  picture#}
-  <img src="{{ asset('/web/images/'~question.addr) }}"> <br/>
-  
-  
-{# debug text  
-  numQuestion : {{question.numQuestion}},
-  quantityAns : {{question.quantityAns}},
-  correctAnswer : {{question.correctAnswer}}:{{ asset('/web/images/'~question.addr) }} <br>
- 
-   #} 
-   
- {# answers#}
- 
-
-       
-       
-       {% raw %}
-         <span id="showResult">{{ correctResult }}    </span>
-       {% endraw %}
-     
-       
-       
-          {% if numQuestion != numberOfQuestions %}
-          <form action="{{ path('quizz_question',{'category':category,'numTest':numTest,'numQuestion':numQuestion+1})}}" method="POST">
-              {% else %}
-          <form action="{{ path('quizz_question',{'category':category,'numTest':numTest,'numQuestion':numQuestion})}}" method="POST">
-         {% endif %}
- 
- 
-
-              {# Display of answers #}
-            
-              {% for i in 1..question.quantityAns  %}
-              
-              <label class="radio-inline" for="a{{i}}" id="l{{i}}"><input type="radio" id="a{{i}}" name="answer"  value="{{i}}"  @click="checkCorrectAnswer({{i}})"  :disabled="finished"/> {{i}}</label>
-              
-                                     
-                                   {#  <label for="a{{i}}" id="l{{i}}">{{i}}</label><br />#}
-              {% endfor %}
-    
-              {# /Display of answers #}
-          
-          
-          <input type="hidden" name="questionNumber" value="{{numQuestion}}"/>
-         <br/>
-          <input type="submit" id="submit" value="ДАЛЕЕ"  v-show="finished" @click="send()">
-         </form>
-         
-  </div>
-
+           {#when quizz is finished#}
+           {% include 'test.quiz.html.twig' %}
 
  {% else %}
-{# it will display this message at the end of test#}
-  Время : {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}
-<br>
-    <h3>  Тест завершён!<br></h3>
-      Вы ответили правильно на вопросы:<br>
-      <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
-      
-     {# failed or succeded #}
-      {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
-       <h1> Вы не сдали тест.</h1>
-      {% else %}
-       <h1> Вы успешно прошли тест.</h1>
-      {% endif %}
-   <form action="{{ path('quizz_category', {'id':category}) }}">
-         <input type="submit" id="submit" value="Продолжить тестирование"  >
-         </form>
-         
-            <form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
-         <input type="submit" id="submit" value="Попробовать еще раз"  >
-         </form>
+     {#when quizz is finished#}
+    {% include 'test.finish.html.twig' %}
    {% endif %}
 </div>
  <footer>
@@ -158,71 +57,7 @@
         </footer>
   <script src="https://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
  <script type="text/javascript">
-    
-
-  	var vm = new Vue(
-  	{
-el:'#instance',
-data:{
-    finished:false,
-    correctResult: '',
-    timer: 0,
-    displayTime:" {{ (('now'|date('U')) - timeUsed+1) | date('i:s')  }}",
-    time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
-    start:0
-    
-},
-created: function()
-{
-  this.timer = setInterval(this.showTime,1000);
-  this.start = this.time;
-},
-methods:
-{
-    showTime:function()
- {
-
-     this.start+=1000;
-    let time = this.start/1000;
- 	var m = Math.floor(time/60);
- 	m = (Math.floor(m/10) == 0)? "0"+m:m;
- 	
- 	var s = Math.ceil(time%60);
- 	s = (Math.floor(s/10) == 0)? "0"+s:s;
- 	this.displayTime =  m+":"+s;
-  
- },
-    checkCorrectAnswer:function(id)
-    {
-
-        this.finished = true;
-         document.getElementById("l"+{{question.correctAnswer}}).style.color="green";
-        if(id == {{question.correctAnswer}}) 
-        {
-            //CORRECT ANSWER
-         this.correctResult = "Правильный ответ!";
-         
-         document.getElementById("showResult").className += "correct_ans";
-        }
-        else
-        {
-            
-            //WRONG ANSWER
-          this.correctResult = "Неправильный ответ! Правильный ответ: "+{{question.correctAnswer}}; 
-           document.getElementById("showResult").className += "wrong_ans";
-        }
-         
-         
-    },
-    send:function()
-    {
-        //because disabled button doesnt work
-        this.finished =false;
-        console.log("send");
-    }
-    
-}
-});
+     {% include 'test.js.twig' %}
 </script>
 
 </body>

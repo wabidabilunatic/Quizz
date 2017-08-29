@@ -138,7 +138,7 @@ $app->get('/script/setUpUsers',
     });
 
 
-$app->error(function (\Exception $e, Request $request, $code) use ($app) {
+/*$app->error(function (\Exception $e, Request $request, $code) use ($app) {
     switch ($code) {
         case 403:
             $message = 'Доступ закрыт.';
@@ -150,7 +150,7 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
             $message = "Что-то пошло не так.";
     }
     return $app['twig']->render('error.html.twig', array('message' => $message));
-});
+});*/
 
 $app->get('/login', function(Request $request) use ($app) {
     return $app['twig']->render('login.html.twig', array(

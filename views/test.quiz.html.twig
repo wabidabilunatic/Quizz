@@ -1,0 +1,83 @@
+<div id="table">
+    {#  display of correct/failed answers#}
+    {#      {% for r in correctAnswers%}
+
+                 <div class="cell {{ (r) ? 'correct' : 'wrong' }}" >{{r}}</div>
+          {% endfor %}#}
+
+
+
+    {% for i in 1..numberOfQuestions%}
+
+
+
+        {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
+
+            <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" >{{i}}</div>
+
+        {% else %}
+
+            <div class="cell" >{{i}}</div>
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+
+<br/>
+{#  if the Quizz is still running on #}
+
+<br>
+Время :    {% raw %}  {{ displayTime }}   {% endraw %}
+<br>
+
+
+{#  picture#}
+<img src="{{ asset('/web/images/'~question.addr) }}"> <br/>
+
+
+{# debug text  
+  numQuestion : {{question.numQuestion}},
+  quantityAns : {{question.quantityAns}},
+  correctAnswer : {{question.correctAnswer}}:{{ asset('/web/images/'~question.addr) }} <br>
+ 
+   #} 
+   
+ {# answers#}
+ 
+
+       
+       
+       {% raw %}
+           <span id="showResult">{{ correctResult }}    </span>
+       {% endraw %}
+     
+       
+       
+          {% if numQuestion != numberOfQuestions %}
+<form action="{{ path('quizz_question',{'category':category,'numTest':numTest,'numQuestion':numQuestion+1})}}" method="POST">
+    {% else %}
+    <form action="{{ path('quizz_question',{'category':category,'numTest':numTest,'numQuestion':numQuestion})}}" method="POST">
+        {% endif %}
+
+
+
+        {# Display of answers #}
+
+        {% for i in 1..question.quantityAns  %}
+
+            <label class="radio-inline" for="a{{i}}" id="l{{i}}"><input type="radio" id="a{{i}}" name="answer"  value="{{i}}"  @click="checkCorrectAnswer({{i}})"  :disabled="finished"/> {{i}}</label>
+
+
+            {#  <label for="a{{i}}" id="l{{i}}">{{i}}</label><br />#}
+        {% endfor %}
+
+        {# /Display of answers #}
+
+
+        <input type="hidden" name="questionNumber" value="{{numQuestion}}"/>
+        <br/>
+        <input type="submit" id="submit" value="ДАЛЕЕ"  v-show="finished" @click="send()">
+    </form>
+
+    </div>

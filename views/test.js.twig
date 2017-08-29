@@ -1,0 +1,71 @@
+
+var vm = new Vue(
+    {
+        el:'#instance',
+        data:{
+            selectedImage: "",
+            finished:false,
+            correctResult: '',
+            timer: 0,
+            displayTime:" {{ (('now'|date('U')) - timeUsed+1) | date('i:s')  }}",
+            time: (new Date()).getTime() - (new Date({{ timeUsed * 1000 }})).getTime(),
+            start:0,
+            images: [{% for q in questions %}"{{ asset('/web/images/'~q.addr) }} {{ (loop.index + 1 < question|length)? ",":"" }}"{% endfor %}]
+
+        },
+        created: function()
+        {
+            this.timer = setInterval(this.showTime,1000);
+            this.start = this.time;
+        },
+        methods:
+            {
+               showPictureAnswer:function(id)
+               {
+                    console.log("you clicked on "+this.images[id-1]);
+                   this.selectedImage = this.images[id-1];
+               },
+                showTime:function()
+                {
+
+                    this.start+=1000;
+                    let time = this.start/1000;
+                    var m = Math.floor(time/60);
+                    m = (Math.floor(m/10) == 0)? "0"+m:m;
+
+                    var s = Math.ceil(time%60);
+                    s = (Math.floor(s/10) == 0)? "0"+s:s;
+                    this.displayTime =  m+":"+s;
+
+                },
+                checkCorrectAnswer:function(id)
+                {
+
+                    this.finished = true;
+                    document.getElementById("l"+{{question.correctAnswer}}).style.color="green";
+                    if(id == {{question.correctAnswer}})
+                    {
+                        //CORRECT ANSWER
+                        this.correctResult = "Правильный ответ!";
+
+                        document.getElementById("showResult").className += "correct_ans";
+                    }
+                    else
+                    {
+
+                        //WRONG ANSWER
+                        this.correctResult = "Неправильный ответ! Правильный ответ: "+{{question.correctAnswer}};
+                        document.getElementById("showResult").className += "wrong_ans";
+                    }
+
+
+                },
+                send:function()
+                {
+                    //because disabled button doesnt work
+                    this.finished =false;
+                    console.log("send");
+                }
+
+            }
+    });

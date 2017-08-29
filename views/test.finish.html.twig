@@ -1,0 +1,50 @@
+{# it will display this message at the end of test#}
+
+<div id="table">
+    {#  display of correct/failed answers#}
+    {#      {% for r in correctAnswers%}
+
+                 <div class="cell {{ (r) ? 'correct' : 'wrong' }}" >{{r}}</div>
+          {% endfor %}#}
+
+
+
+    {% for i in 1..numberOfQuestions%}
+
+
+
+        {% if correctAnswers is not empty and i <= (correctAnswers|length) %}
+
+            <div class="cell  {{ (correctAnswers[i-1] ) ? 'correct' : 'wrong' }}" @click="showPictureAnswer({{i}})" >{{i}}</div>
+
+        {% else %}
+
+            <div class="cell" @click="showPictureAnswer({{i}})">{{i}}</div>
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+<img src="{% raw %}{{selectedImage}}{% endraw %}">
+<br/>
+
+
+Время : {{ (('now'|date('U')) - timeUsed) | date('i:s')  }}
+<br>
+<h3>  Тест завершён!<br></h3>
+Вы ответили правильно на вопросы:<br>
+<h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
+
+{# failed or succeded #}
+      {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
+          <h1> Вы не сдали тест.</h1>
+      {% else %}
+          <h1> Вы успешно прошли тест.</h1>
+      {% endif %}
+<form action="{{ path('quizz_category', {'id':category}) }}">
+    <input type="submit" id="submit" value="Продолжить тестирование"  >
+</form>
+
+<form action="{{ path('quizz_question', {'category':category,'numTest': numTest}) }}">
+    <input type="submit" id="submit" value="Попробовать еще раз"  >
+</form>

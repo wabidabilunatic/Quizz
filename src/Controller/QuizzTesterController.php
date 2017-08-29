@@ -106,7 +106,7 @@
                                }                    
    
            
-                        $content = $app['twig']->render('test.html.twig', array('question' =>  $question,'category'=>$category,'numTest'=>$numTest,'numQuestion'=>$numQuestion,'numberOfQuestions'=>$numberOfQuestions,'correctAnswers'=>$correctAnswers,'finished'=>$finished,'totalCorrects'=>$totalCorrects,'timeUsed'=>$timeUsed));
+                        $content = $app['twig']->render('test.html.twig', array('question' =>  $question, 'questions'=>$questions,'category'=>$category,'numTest'=>$numTest,'numQuestion'=>$numQuestion,'numberOfQuestions'=>$numberOfQuestions,'correctAnswers'=>$correctAnswers,'finished'=>$finished,'totalCorrects'=>$totalCorrects,'timeUsed'=>$timeUsed));
              
                          return new Response($content);
            
