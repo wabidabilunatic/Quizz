@@ -13,7 +13,7 @@ class QuizzDAO
      */
     private $db;
 
-    public static $dbName = "maindb";
+    public static $dbName = "quizz";
     public static $nameCategory = "Category";
     public static $nameNumTest = "Num_test";
     public static $nameNumQuestion = "Num_question";

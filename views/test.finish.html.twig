@@ -14,36 +14,41 @@
 </div>
 
 
-{#here it is the place where
-the image of the selected question is displayed#}
-{% raw %}
+{#here it is the place where the image of the selected question is displayed#}
 
+{#show if clicked show result #}
 <div v-show="wannaSee">
-<img src="{{selectedImage}}">
-    <br>
-   correct {{correctAnswer}} , your answer : {{yourAnswer}}
-</div>
-{% endraw %}
+        {% raw %}
+        <img src="{{selectedImage}}">
+        <br>
+        correct {{correctAnswer}} , your answer : {{yourAnswer}}
+        {% endraw %}
+ </div>
+ {#/show if clicked show result #}
+
 <br/>
 
-
-
-{#timer#}
-Время : {{ ((('now'|date('U')) - timeUsed+2)>0)? (('now'|date('U')) - timeUsed+2):0 | date('i:s')  }}
-{#29-9 : tried to fix the glitched timer#}
-<br>
-<h3>  Тест завершён!<br></h3>
-Вы ответили правильно на вопросы:<br>
-<h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
-
-
-
-{# failed or succeded #}
-      {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
-          <h1> Вы не сдали тест.</h1>
-      {% else %}
-          <h1> Вы успешно прошли тест.</h1>
-      {% endif %}
+{#/hide if clicked show result #}
+<div v-show="!wannaSee">
+    {#timer#}
+    Время : {{ ((('now'|date('U')) - timeUsed)| date('i:s')) }}
+    
+    <br>
+    <h3>  Тест завершён!<br></h3>
+    Вы ответили правильно на вопросы:<br>
+    <h1>{{totalCorrects}}/{{numberOfQuestions}}</h1>
+    
+    
+    
+    {# failed or succeded #}
+  {% if (numberOfQuestions < 10 and (numberOfQuestions-totalCorrects) > 1) or (numberOfQuestions >= 10 and (numberOfQuestions-totalCorrects) > 2 )%}
+      <h1> Вы не сдали тест.</h1>
+  {% else %}
+      <h1> Вы успешно прошли тест.</h1>
+  {% endif %}
+{#/hide if clicked show result #}
+</div>      
+      
 <form action="{{ path('quizz_category', {'id':category}) }}">
     <input type="submit" id="submit" value="Продолжить тестирование"  >
 </form>
